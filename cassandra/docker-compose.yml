@@ -1,0 +1,28 @@
+#docker pull cassandra:3.11
+#docker run --name some-cassandra --network some-network -d cassandra:tag
+#docker run --name some-cassandra2 -d --network some-network -e CASSANDRA_SEEDS=some-cassandra cassandra:tag
+
+version: '3.7'
+
+services:
+
+  cassandra1:
+    image: "cassandra:3.11"
+    restart: "on-failure"
+    ports:
+      - "9411:9402"
+    networks:
+      - cassandra-network
+  
+  cassandra2:
+    image: "cassandra:3.11"
+    restart: "on-failure"
+    ports:
+      - "9412:9402"
+    environment:
+      CASSANDRA_SEEDS: "cassandra1"
+    networks:
+      - cassandra-network
+
+networks:
+  cassandra-network:

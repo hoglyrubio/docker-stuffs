@@ -1,0 +1,2 @@
+docker run -p 3306:3306 --name mysql57 --detach -e MYSQL_ROOT_PASSWORD="qwe123" -e MYSQL_ROOT_HOST=% -e MYSQL_DATABASE=social -d mysql/mysql-server:5.7 --lower_case_table_names=1 --init-connect='GRANT CREATE USER ON *.* TO 'root'@'%';FLUSH PRIVILEGES;'
+docker logs mysql57 -f 

@@ -1,0 +1,1 @@
+docker-compose.exe -f docker-compose-single-broker.yml up --detach
